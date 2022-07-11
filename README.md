@@ -2,7 +2,7 @@
 参加2022 rCore Comp的学习日志
 
 ## 目录
-
+[toc]
 #### 7.05
 
 * 一边阅读[《Rust语言圣经》](https://course.rs/about-book.html) 一边做rustlings（接近40道）
@@ -92,3 +92,21 @@
 
   8. 通过冗余提高可靠性
 
+#### 7.10
+* 看组成设计，记录都写在[博客](https://werifu.github.io/posts/riscv_memo/)里了。
+* 主要是学习了RV的指令集，数量挺少的，很简洁，感觉x0恒为0的设计很有趣。
+* 学习到了双指令实现atomic exchange的方法
+
+#### 7.11
+
+* 学习RiscV的特权级指令，看[RV手册第十章](http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)
+  * mret：machine-mode trap return
+  * sret： supervisor-mode trap return
+  * wfi： wait for interrupt
+  * sfence.vma：supervisor-mode fence virtual memory address
+* 用户模式、机器模式、监管者模式三种状态
+* 切换模式过程中对控制状态寄存器（CSR，八个）的使用
+* 把lab0-0、lab0-1交了，都不需要做代码上的修改。
+  lab0-1中在codespace里直接跑`make test2`会有找不到asm宏的问题，微信群里有助教解释了，感谢
+
+![](https://s3.bmp.ovh/imgs/2022/07/12/247945a94e0f69a1.png)
