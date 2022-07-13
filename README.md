@@ -121,3 +121,9 @@
 * 多道程序的加载：把应用程序载入不同的base_addr
 * 任务切换：主动的yield，类似以前写过的jyyOS课的协程，只是这个在操作系统实现
 * 分时多任务（抢占式调度），利用SBI的SBI_SET_TIMER能力，做到在一定时间后触发中断，然后在trap_handler的match中增加一个时间片中断处理，跟上面的任务切换一样
+
+#### 7.13
+
+* 做完lab1
+* lab1报告，简答题思考，都写在下面链接了
+  https://werifu.github.io/posts/rcore-camp-2022-lab1/
