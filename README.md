@@ -127,3 +127,44 @@
 * 做完lab1
 * lab1报告，简答题思考，都写在下面链接了
   https://werifu.github.io/posts/rcore-camp-2022-lab1/
+
+#### 7.14
+
+* 上班摸鱼，看第四章（地址空间），读起来难度非常高，通读了一遍没看懂
+* 以前课上大概知道这些知识，但是知识点没有连贯地串起来
+* 实验题目也不是很明白
+
+#### 7.15
+
+* 继续看第四章，还是没怎么看懂
+* 看了1h lec5的后半部分，地址空间部分，理解深了一些，但是还没串起来，周末再做知识的总结
+
+#### 7.16
+
+给自己放假一天
+
+#### 7.17
+
+* 完成了 sys_get_time 的重写
+  * 核心其实就是把 virt_addr 转换成 phys_addr ，然后再将数据类型强转写入 \*phys_addr
+  * 实现了一个 virt2phys_addr() 函数，通过查页表得到物理地址
+* sys_get_task_info也是同样的原理：
+  * 找到物理地址，再写入 \*task_info
+  * 但是遇到了 bug ：写入 TaskStatus::Running 在评测里会变成 Ready ，没找到原因
+
+#### 7.18
+
+* 完成 sys_get_task_info
+  * 在群友提醒下，找到一个[关于那个 bug 的 pr](https://github.com/LearningOS/rust-based-os-comp2022/pull/77)
+  * 在评测里 enum TaskStatus 多了一个 UnInit 的值在前面，导致编译期枚举值解析不一致
+* 写了 mmap 的逻辑：直接使用 frame_allocate() 操作，但是遇到了两次mmap，不同vpn映射到同一ppn的问题
+
+#### 7.19
+
+* 排查良久没看出问题，去偷瞄了两眼仓库里其他人的代码，发现我的设计就有问题
+  * 没有用到 MemorySet 的抽象，而是直接去操作物理帧，所以分配后的物理帧没有被管理到，因此 frame_allocate() 后那个物理帧会自动 drop 掉，而资源又是RAII式的管理方式，自定义的 drop 函数里dealloc了这个帧，因此第二次 mmap 的时候又用上了原来的那一帧
+* 校验地址后用 MemorySet 的 insert_framed_area 来分配新页
+* 实现一个 MemorySet 的 munmap ，校验地址后通过遍历的匹配在 areas 里 remove 掉页
+* 博客 WIP……
+* 需要加快速度了，还剩3个实验但是只有10天
+
