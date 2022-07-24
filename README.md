@@ -194,3 +194,13 @@
 * stride 实现，但是仍有 bug 未解决
   * 参考了助教 xushanpu 的讲解视频，学到许多
 
+#### 7.24
+
+* 花了一整天捣鼓 stride test，终于在三更半夜成功了
+  * 会有 `already borrowed: BorrowMutError` 的 panic 报错，是在测试结束后调用最后一个 exit 时发生的
+    * 定位：在函数前面加 `#[trace_caller]` 就能显示文件+行数
+    * 原因：在测试的时候，initproc 会被替换成各章的 ch_usertest ,所以是不会像普通的运行那样进入 initproc 然后运行 shell 的， usertest 退出的时候所有权会被借走，但是后面又借回来了导致错误（其实就是在 exit_current_and_run_next_task 里，将要退出的和下一个任务是同一个，而我们需要同时可变借用这两个）
+    * 解决方案：在拿到 current 后判断 pid，如果是 0（表示初进程）就 shutdown() 直接关机
+* stride test 失败
+  * 没找到原因
+  * 在 ci-user 里，给几个 stride 测试样例加 println! 大幅降低运行速度就成功了。。。
