@@ -1,8 +1,50 @@
 ## 简介
 参加2022 rCore Comp的学习日志
-
 ## 目录
-[toc]
+- [简介](#简介)
+- [目录](#目录)
+- [博客链接](#博客链接)
+- [日记](#日记)
+  - [每日记录](#每日记录)
+    - [7.05](#705)
+    - [7.06](#706)
+    - [7.07](#707)
+    - [7.08](#708)
+    - [7.09](#709)
+    - [7.10](#710)
+    - [7.11](#711)
+    - [7.12](#712)
+    - [7.13](#713)
+    - [7.14](#714)
+    - [7.15](#715)
+    - [7.16](#716)
+    - [7.17](#717)
+    - [7.18](#718)
+    - [7.19](#719)
+    - [7.20](#720)
+    - [7.21](#721)
+    - [7.22](#722)
+    - [7.23](#723)
+    - [7.24](#724)
+    - [7.25](#725)
+    - [7.26](#726)
+    - [7.27](#727)
+    - [7.28](#728)
+    - [7.29](#729)
+    - [7.30](#730)
+    - [7.31](#731)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+## 博客链接
+* [lab1](https://werifu.github.io/posts/rcore-camp-2022-lab1/)
+* [lab2](https://werifu.github.io/posts/rcore-camp-2022-lab2/)
+* [lab3](https://werifu.github.io/posts/rcore-camp-2022-lab3/)
+* [lab4](https://werifu.github.io/posts/rcore-camp-2022-lab4/)
+* [lab5](https://werifu.github.io/posts/rcore-camp-2022-lab5) (WIP)
+
+## 日记
+### 每日记录
 #### 7.05
 
 * 一边阅读[《Rust语言圣经》](https://course.rs/about-book.html) 一边做rustlings（接近40道）
@@ -204,3 +246,38 @@
 * stride test 失败
   * 没找到原因
   * 在 ci-user 里，给几个 stride 测试样例加 println! 大幅降低运行速度就成功了。。。
+
+#### 7.25
+
+* 看文件系统
+* 看了助教的视频 还是有点懵
+
+#### 7.26
+
+#### 7.27
+
+* [助教的笔记](https://github.com/xushanpu123/xsp-daily-work/blob/master/%E6%9A%91%E6%9C%9Frcore%E5%AE%9E%E9%AA%8C%E7%AC%94%E8%AE%B0/chapter%206%EF%BC%9A%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.md) 学到很多
+* 尝试写fstat
+
+* link 到底是啥
+
+#### 7.28
+
+* 看了 chenyu 老师的第八次课视频，对 fs 终于有了更清晰的认知
+  * 最大的收获是那张PPT（可以见我博客）
+
+#### 7.29
+* 加班了，下班后出去搓了顿，没学
+
+#### 7.30
+
+* 完成 lab4
+* 很难，需要参考助教的代码
+
+#### 7.31
+
+* 尝试在我的 m1 mac 上做实验，似乎挺顺利
+  * mac 没有内置 timeout 命令，需要下载，`brew install coreutils`
+  * qemu 可以在 brew 下载到最新最热 7.0 版本，不需要源码编译
+* 补充了 lab2, lab3, lab4 的做题记录
+* 过几天写完 lab5 再提个 pr 添加 macOS 的实验环境指南
